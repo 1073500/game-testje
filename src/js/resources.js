@@ -1,6 +1,7 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
+// img resources zijn objecten die een afbeelding bevatten
 const Resources = {
     Fish: new ImageSource('images/fish.png'),
     BG: new ImageSource('images/sea.png'),
