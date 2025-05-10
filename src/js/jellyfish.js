@@ -14,7 +14,7 @@ export class Jellyfish extends Actor {
         // de positie van de kwal wordt in dit geval random gezet (code bovenin)
         this.pos = new Vector(x, y)
         // snelheid van de kwal
-        this.vel = new Vector(-100, 0)
+        this.vel = new Vector(-20, 0)
 
         // de scale van de kwal is random
         let randomScale = Math.random() * 0.05 + 0.05

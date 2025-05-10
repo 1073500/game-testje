@@ -60,7 +60,7 @@ export class Game extends Engine {
             // de positie van de kwal wordt in dit geval random gezet (code bovenin)
             jellyfish.pos = new Vector(x, y)
             // snelheid van de kwal
-            jellyfish.vel = new Vector(-100, 0)
+            jellyfish.vel = new Vector(-200, 0)
     
             // de scale van de kwal is random
             let randomScale = Math.random() * 0.05 + 0.05
