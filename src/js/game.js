@@ -3,7 +3,6 @@ import { Actor, Engine, Vector, DisplayMode, Buttons } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Spongebob } from './spongebob.js'
 import { Bubble } from './bubble.js'
-//!
 import { Jellyfish } from './jellyfish.js'
 
 // import van "excalibur"
@@ -25,8 +24,9 @@ export class Game extends Engine {
         // achtergrond van game
         let sea = new Actor()
         sea.graphics.use(Resources.BG.toSprite())
-        sea.pos = new Vector(400, 450 / 2)
+        //sea.pos = new Vector(400, 450 / 2)
         sea.scale = new Vector(1.3, 1.3)
+        sea.anchor = new Vector(0,0) //makkelijk afbeelding centeren
         this.add(sea)
 
         // huis spongbob
@@ -49,46 +49,18 @@ export class Game extends Engine {
         for (let i = 0; i < 20; i++) {
 
             // de kwal is een actor die een sprite gebruikt
-            let jellyfish = new Actor()
-
-            let x = Math.random() * 800
-            let y = Math.random() * 450
-            // jellyfish. wordt gebruikt om dingen met de actor te doen
-    
-            // de afbeelding van de kwal wordt geladen uit de images map die als objecten in resources.js staan
-            jellyfish.graphics.use(Resources.Jellyfish.toSprite())
-            // de positie van de kwal wordt in dit geval random gezet (code bovenin)
-            jellyfish.pos = new Vector(x, y)
-            // snelheid van de kwal
-            jellyfish.vel = new Vector(-200, 0)
-    
-            // de scale van de kwal is random
-            let randomScale = Math.random() * 0.05 + 0.05
-            // de waarde van de vector is de randomScale variabel
-            jellyfish.scale = new Vector(randomScale, randomScale)
-    
-            // de kwal draait met angularVelocity
-            jellyfish.angularVelocity = 0.1
-            // kwal gaat weer naar het begin gaat als hij het scherm verlaat (functie onderin)
-            jellyfish.events.on("exitviewport", (e) => this.jellyfishLeft(e))
-            // de kwal is draggable, dat betekent dat je hem kan slepen met de muis
-            jellyfish.draggable = true
-            // kwal toevoegen aan de game (net als prg03 met object.append)
-
-            // vang de kwal als je hem aanklikt
-            jellyfish.on("pointerup", () => {
-                console.log("Je hebt een kwal gevangen!")
-                jellyfish.kill()
-            })
+            let jellyfish = new Jellyfish()
 
             this.add(jellyfish)
         }
 
         // spongebob maken
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 10; i++) {
 
             let spongebob = new Spongebob()
             this.add(spongebob)
+
+            
         }
 
         // bubbles maken
