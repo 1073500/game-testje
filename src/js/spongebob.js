@@ -26,7 +26,7 @@ export class Spongebob extends Actor {
         // ik kan spongebob slepen met de muis
         //this.draggable = true
 
-        this.events.on("exitviewport", (e) => this.spongebobLeft(e))
+        //this.events.on("exitviewport", (e) => this.spongebobLeft(e))
 
     }
 
@@ -75,6 +75,8 @@ export class Spongebob extends Actor {
                 console.log('Vang kwal')
                 event.other.owner.kill()
                 //event.other.owner.wasEatenByShark
+                Resources.Laugh.play()
+                this.scene.engine.addScore()
             }
         }
 

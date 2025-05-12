@@ -8,6 +8,8 @@ const Resources = {
     Spongebob: new ImageSource('images/spongebob.png'),
     Bubble: new ImageSource('images/bubble.png'),
     House: new ImageSource('images/pineapple.png'),
+    //geluid
+    Laugh: new Sound('sounds/spongebob-laugh.wav'),
 }
 
 
