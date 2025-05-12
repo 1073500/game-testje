@@ -16,6 +16,7 @@ export class Game extends Engine {
             maxFps: 60,
             displayMode: DisplayMode.FitScreen
         })
+        this.showDebug(true)
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
@@ -46,7 +47,7 @@ export class Game extends Engine {
         // kwallen maken
         // loop die 20 kwallen maakt en ze random op het scherm plaatst
         // alle code van de kwal zit in de loop
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 20; i++) {
 
             // de kwal is een actor die een sprite gebruikt
             let jellyfish = new Jellyfish()
@@ -55,7 +56,7 @@ export class Game extends Engine {
         }
 
         // spongebob maken
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 1; i++) {
 
             let spongebob = new Spongebob()
             this.add(spongebob)

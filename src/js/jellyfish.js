@@ -3,7 +3,8 @@ import { Resources } from './resources.js'
 
 export class Jellyfish extends Actor {
     constructor() {
-        super()
+        super({width: Resources.Spongebob.width,
+            height: Resources.Spongebob.height,})
 
         let x = Math.random() * 800
         let y = Math.random() * 450
@@ -12,9 +13,9 @@ export class Jellyfish extends Actor {
         // de afbeelding van de kwal wordt geladen uit de images map die als objecten in resources.js staan
         this.graphics.use(Resources.Jellyfish.toSprite())
         // de positie van de kwal wordt in dit geval random gezet (code bovenin)
-        this.pos = new Vector(x, y)
+        this.pos = new Vector(800 + x, y)
         // snelheid van de kwal
-        //this.vel = new Vector(-20, 0)
+        this.vel = new Vector(-500, 0)
 
         // de scale van de kwal is random
         let randomScale = Math.random() * 0.05 + 0.05
@@ -22,7 +23,7 @@ export class Jellyfish extends Actor {
         this.scale = new Vector(randomScale, randomScale)
 
         // de kwal draait met angularVelocity
-        //this.angularVelocity = 0.1
+        this.angularVelocity = 0.1
         // kwal gaat weer naar het begin gaat als hij het scherm verlaat (functie onderin)
         this.events.on("exitviewport", (e) => this.jellyfishLeft(e))
         // de kwal is draggable, dat betekent dat je hem kan slepen met de muis
@@ -31,46 +32,34 @@ export class Jellyfish extends Actor {
 
         // vernietig de kwal als je hem aanklikt
         this.on("pointerup", () => {
-        console.log("Je hebt een kwal gevangen!")
-        this.kill()
-         })
+            console.log("Je hebt een kwal gevangen!")
+            this.kill()
+        })
 
     }
 
     // deze functie wordt aangeroepen als een kwal het scherm verlaat
-    //jellyfishLeft(e) {
-    //let x = Math.random() * 800
-    //let y = Math.random() * 450
-    // e.target.pos = new Vector(x, y)
+    jellyfishLeft(e) {
+        let x = Math.random() * 800
+        let y = Math.random() * 450
+        e.target.pos = new Vector(800 + x, y)
 
-    // }
-
-    onPreUpdate(engine) {
-        let xspeed = 0
-        let yspeed = 0
-        let kb = engine.input.keyboard
-
-        if (kb.isHeld(Keys.W) || kb.isHeld(Keys.Up)) {
-            yspeed = -300
-        }
-        if (kb.isHeld(Keys.S) || kb.isHeld(Keys.Down)) {
-            yspeed = 300
-        }
-        if (kb.isHeld(Keys.A) || kb.isHeld(Keys.Left)) {
-            xspeed = -300
-            this.graphics.flipHorizontal = true       // flip de sprite
-        }
-        if (kb.isHeld(Keys.D) || kb.isHeld(Keys.Right)) {
-            xspeed = 300
-            this.graphics.flipHorizontal = false      // flip de sprite
-        }
-        this.vel = new Vector(xspeed, yspeed)
-
-        // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
-        if (kb.wasPressed(Keys.Space)) {
-            this.shoot()
-        }
     }
+
+    onPostKill(){
+        this.unkill()
+        let x = Math.random() * 800
+        let y = Math.random() * 450
+        this.pos = new Vector(800 + x, y)
+        console.log("Spongebob ving een kwal!")
+    }
+
+
+
+    
+
+
+
 
 
 }
