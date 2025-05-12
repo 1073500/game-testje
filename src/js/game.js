@@ -46,7 +46,7 @@ export class Game extends Engine {
         // kwallen maken
         // loop die 20 kwallen maakt en ze random op het scherm plaatst
         // alle code van de kwal zit in de loop
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 1; i++) {
 
             // de kwal is een actor die een sprite gebruikt
             let jellyfish = new Jellyfish()
