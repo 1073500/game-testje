@@ -22,8 +22,6 @@ export class Game extends Engine {
 
     // starten van de game
     startGame() {
-        let score = 0
-
 
         // achtergrond van game
         let sea = new Actor()
@@ -46,24 +44,7 @@ export class Game extends Engine {
         house.events.on("exitviewport", (e) => this.houseLeft(e))
         this.add(house)
 
-
-
-
-        this.scoreLabel = new Label({
-            text: 'Score: 0',
-            pos: new Vector(100, 50),
-            font: new Font({
-                family: 'Arial',
-                size: 24,
-                unit: FontUnit.Px,
-                color: Color.White
-            })
-        })
-
-        this.add(this.scoreLabel)
-        //this.scoreLabel.text = `Score: ${score}`
-
-
+        
         // kwallen maken
         // loop die 20 kwallen maakt en ze random op het scherm plaatst
         // alle code van de kwal zit in de loop
@@ -91,13 +72,28 @@ export class Game extends Engine {
         }
 
 
+        this.scoreLabel = new Label({
+            text: 'Score: 0',
+            pos: new Vector(100, 50),
+            font: new Font({
+                family: 'Arial',
+                size: 24,
+                unit: FontUnit.Px,
+                color: Color.White
+            })
+        })
+
+        this.score = 0
+        this.add(this.scoreLabel)
+        //this.scoreLabel.text = `Score: ${score}`
 
     }
 
     addScore() {
-        score ++
-        this.scoreLabel.text = `Score: ${score}`
         console.log("Je hebt een kwal gevangen!")
+        this.score +=1
+        this.scoreLabel.text = `Score: ${this.score}`
+        
     }
 
 
