@@ -12,8 +12,8 @@ export class Spongebob extends Actor {
             collisionType: CollisionType.Active
         })
 
-        let x = Math.random() * 800
-        let y = Math.random() * 450
+        let x = Math.random() * 640
+        let y = Math.random() * 360
 
         console.log("Ben er klaar voor!")
         //console.log(this.pos)
@@ -22,7 +22,7 @@ export class Spongebob extends Actor {
         this.pos = new Vector(x, y)
         //this.vel = new Vector(-100, 0)
 
-        this.scale = new Vector(0.04, 0.04)
+        this.scale = new Vector(0.2, 0.2)
         // ik kan spongebob slepen met de muis
         //this.draggable = true
 
@@ -56,31 +56,32 @@ export class Spongebob extends Actor {
             xspeed = 300
             this.graphics.flipHorizontal = false      // flip de sprite
         }
-            this.vel = new Vector(xspeed, yspeed)
-    
-            // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
-            if (kb.wasPressed(Keys.Space)) {
-                this.shoot()
-            }
-        }
-    
-        onInitialize(engine) {
-            this.on('collisionstart', (event) => this.hitSomething(event))
-        }
-        
+        this.vel = new Vector(xspeed, yspeed)
 
-        hitSomething(event) {
-            if (event.other.owner instanceof Jellyfish) {
-                // Je kan `instanceof` gebruiken om te zien waar je tegenaan botst.
-                console.log('Vang kwal')
-                event.other.owner.kill()
-                //event.other.owner.wasEatenByShark
-                Resources.Laugh.play()
-                this.scene.engine.addScore()
-            }
+        // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
+        if (kb.wasPressed(Keys.Space)) {
+            this.shoot()
         }
+    }
+
+    onInitialize(engine) {
+        this.on('collisionstart', (event) => this.hitSomething(event))
+    }
 
 
-    
+    hitSomething(event) {
+        if (event.other.owner instanceof Jellyfish) {
+            // Je kan `instanceof` gebruiken om te zien waar je tegenaan botst.
+            console.log('Vang kwal')
+            event.other.owner.kill()
+            //event.other.owner.wasEatenByShark
+            //geluid
+            //Resources.Laugh.play()
+            this.scene.engine.addScore()
+        }
+    }
+
+
+
 
 }

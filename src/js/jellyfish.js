@@ -3,11 +3,13 @@ import { Resources } from './resources.js'
 
 export class Jellyfish extends Actor {
     constructor() {
-        super({width: Resources.Spongebob.width,
-            height: Resources.Spongebob.height,})
+        super({
+            width: Resources.Spongebob.width,
+            height: Resources.Spongebob.height,
+        })
 
-        let x = Math.random() * 800
-        let y = Math.random() * 450
+        let x = Math.random() * 640
+        let y = Math.random() * 360
         // jellyfish. wordt gebruikt om dingen met de actor te doen
 
         // de afbeelding van de kwal wordt geladen uit de images map die als objecten in resources.js staan
@@ -23,7 +25,7 @@ export class Jellyfish extends Actor {
         this.scale = new Vector(randomScale, randomScale)
 
         // de kwal draait met angularVelocity
-        this.angularVelocity = 0.1
+        // this.angularVelocity = 0.1
         // kwal gaat weer naar het begin gaat als hij het scherm verlaat (functie onderin)
         this.events.on("exitviewport", (e) => this.jellyfishLeft(e))
         // de kwal is draggable, dat betekent dat je hem kan slepen met de muis
@@ -46,7 +48,7 @@ export class Jellyfish extends Actor {
 
     }
 
-    onPostKill(){
+    onPostKill() {
         this.unkill()
         let x = Math.random() * 800
         let y = Math.random() * 450
@@ -56,7 +58,7 @@ export class Jellyfish extends Actor {
 
 
 
-    
+
 
 
 
