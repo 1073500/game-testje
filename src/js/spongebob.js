@@ -77,7 +77,7 @@ export class Spongebob extends Actor {
             //event.other.owner.wasEatenByShark
             //geluid
             //Resources.Laugh.play()
-            this.scene.engine.addScore()
+            this.scene.engine.ui.addScore()
         }
     }
 

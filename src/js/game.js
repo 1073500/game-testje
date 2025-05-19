@@ -1,12 +1,15 @@
 import '../css/style.css'
 import { Actor, Engine, Vector, DisplayMode, Label, Font, FontUnit, Color } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
+import { UI } from './ui.js'
 import { Spongebob } from './spongebob.js'
 import { Bubble } from './bubble.js'
 import { Jellyfish } from './jellyfish.js'
 
 // import van "excalibur"
 export class Game extends Engine {
+
+    ui
 
     constructor() {
         super({
@@ -26,7 +29,7 @@ export class Game extends Engine {
         let bg = new Actor()
         bg.graphics.use(Resources.BG.toSprite())
         //bg.pos = new Vector(400, 450 / 2)
-        bg.scale = new Vector(1, 1)
+        bg.scale = new Vector(0.5, 0.5)
         bg.anchor = new Vector(0, 0) //makkelijk afbeelding centeren
         this.add(bg)
 
@@ -68,45 +71,48 @@ export class Game extends Engine {
         //}
 
 
-        this.scoreLabel = new Label({
-            text: 'Score: 0',
-            pos: new Vector(100, 50),
-            font: new Font({
-                family: 'Arial',
-                size: 24,
-                unit: FontUnit.Px,
-                color: Color.White
-            })
-        })
+        this.ui = new UI()
+        this.add(this.ui)
 
-        this.score = 0
-        this.add(this.scoreLabel)
+        //this.scoreLabel = new Label({
+        //  text: 'Score: 0',
+        //pos: new Vector(100, 50),
+        //font: new Font({
+        //  family: 'Arial',
+        //size: 24,
+        //unit: FontUnit.Px,
+        //color: Color.White
+        //})
+        //})
 
-    }
-
-    addScore() {
-        console.log("Je hebt een kwal gevangen!")
-        this.score += 1
-        this.scoreLabel.text = `Score: ${this.score}`
+        //this.score = 0
+        //this.add(this.scoreLabel)
 
     }
 
+    //addScore() {
+    //console.log("Je hebt een kwal gevangen!")
+    //this.score += 1
+    //this.scoreLabel.text = `Score: ${this.score}`
+
+    // }
 
 
-    jellyfishLeft(e) {
-        let x = Math.random() * 800
-        let y = Math.random() * 450
-        e.target.pos = new Vector(x, y)
+  // dit hoort in jellyfish
+    // jellyfishLeft(e) {
+    //     let x = Math.random() * 800
+    //     let y = Math.random() * 450
+    //     e.target.pos = new Vector(x, y)
 
-    }
+    // }
 
-    //!huis komt niet smooth terug!
-    houseLeft(e) {
-        let x = Math.random() * 800
-        let y = Math.random() * 450
-        e.target.pos = new Vector(100, 300)
+    //!hdit hoort inhuis
+    // houseLeft(e) {
+    //     let x = Math.random() * 800
+    //     let y = Math.random() * 450
+    //     e.target.pos = new Vector(100, 300)
 
-    }
+    // }
 
 
 
