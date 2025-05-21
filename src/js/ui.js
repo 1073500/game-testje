@@ -8,6 +8,7 @@ export class UI extends Actor {
     constructor() {
         super()
         console.log("ik ben de ui")
+        
         this.scoreLabel = new Label({
             text: 'Score: 0',
             pos: new Vector(100, 50),
@@ -25,10 +26,12 @@ export class UI extends Actor {
         
     }
 
-    addScore() {
+    
+    showScore(score) {
         console.log("add score")
-        this.score += 1
-        this.scoreLabel.text = `Score: ${this.score}`
+        //this.score += 1
+        this.scoreLabel.text = `Score: ${score}`
 
     }
+
 }

@@ -3,7 +3,7 @@ import { Actor, Engine, Vector, DisplayMode, Label, Font, FontUnit, Color } from
 import { Resources, ResourceLoader } from './resources.js'
 import { UI } from './ui.js'
 import { Spongebob } from './spongebob.js'
-import { Bubble } from './bubble.js'
+import { Mine } from './mine.js'
 import { Jellyfish } from './jellyfish.js'
 
 // import van "excalibur"
@@ -56,12 +56,24 @@ export class Game extends Engine {
         }
 
         // spongebob maken
-        for (let i = 0; i < 1; i++) {
+        //for (let i = 0; i < 1; i++) {
 
-            let spongebob = new Spongebob()
-            this.add(spongebob)
+        let spongebob = new Spongebob("Not-Spongebob", 100, 175, "playerOne")
+        this.add(spongebob)
 
-        }
+        this.ui = new UI(30, 170)
+        this.add(this.ui)
+
+
+
+        let notSpongebob = new Spongebob("Not-not-Spongebob", 200, 220, "playerTwo")
+        this.add(notSpongebob)
+
+        //}
+
+        //mine maken
+        let mine = new Mine 
+        this.add(mine)
 
         // bubbles maken
         // for (let i = 0; i < 50; i++) {
@@ -71,8 +83,7 @@ export class Game extends Engine {
         //}
 
 
-        this.ui = new UI()
-        this.add(this.ui)
+
 
         //this.scoreLabel = new Label({
         //  text: 'Score: 0',
@@ -98,7 +109,7 @@ export class Game extends Engine {
     // }
 
 
-  // dit hoort in jellyfish
+    // dit hoort in jellyfish
     // jellyfishLeft(e) {
     //     let x = Math.random() * 800
     //     let y = Math.random() * 450

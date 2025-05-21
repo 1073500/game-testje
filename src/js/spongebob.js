@@ -5,15 +5,26 @@ import { Jellyfish } from "./jellyfish.js"
 
 // export, zodat spongebob in de game komt
 export class Spongebob extends Actor {
-    constructor() {
+
+    name
+    score
+    player
+
+    constructor(name, x, y, player) {
         super({
             width: Resources.Spongebob.width,
             height: Resources.Spongebob.height,
             collisionType: CollisionType.Active
         })
 
-        let x = Math.random() * 640
-        let y = Math.random() * 360
+        //array
+        
+
+        this.score = 0
+        console.log(`My name is ${name}`)
+        this.name = name
+        this.player = player
+
 
         console.log("Ben er klaar voor!")
         //console.log(this.pos)
@@ -42,25 +53,54 @@ export class Spongebob extends Actor {
         let yspeed = 0
         let kb = engine.input.keyboard
 
-        if (kb.isHeld(Keys.W) || kb.isHeld(Keys.Up)) {
-            yspeed = -300
+        //keys playerOne
+        if (this.player === "playerOne") {
+            
+            if (kb.isHeld(Keys.W)) {
+                yspeed = -300
+            }
+            if (kb.isHeld(Keys.S)) {
+                yspeed = 300
+            }
+            if (kb.isHeld(Keys.A)) {
+                xspeed = -300
+                this.graphics.flipHorizontal = true       // flip de sprite
+            }
+            if (kb.isHeld(Keys.D)) {
+                xspeed = 300
+                this.graphics.flipHorizontal = false      // flip de sprite
+            }
+            this.vel = new Vector(xspeed, yspeed)
+    
+            // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
+            if (kb.wasPressed(Keys.Space)) {
+                this.shoot()
+            }
         }
-        if (kb.isHeld(Keys.S) || kb.isHeld(Keys.Down)) {
-            yspeed = 300
-        }
-        if (kb.isHeld(Keys.A) || kb.isHeld(Keys.Left)) {
-            xspeed = -300
-            this.graphics.flipHorizontal = true       // flip de sprite
-        }
-        if (kb.isHeld(Keys.D) || kb.isHeld(Keys.Right)) {
-            xspeed = 300
-            this.graphics.flipHorizontal = false      // flip de sprite
-        }
-        this.vel = new Vector(xspeed, yspeed)
 
-        // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
-        if (kb.wasPressed(Keys.Space)) {
-            this.shoot()
+        //keys playerTwo
+        if (this.player === "playerTwo") {
+            
+            if (kb.isHeld(Keys.Up)) {
+                yspeed = -300
+            }
+            if (kb.isHeld(Keys.Down)) {
+                yspeed = 300
+            }
+            if (kb.isHeld(Keys.Left)) {
+                xspeed = -300
+                this.graphics.flipHorizontal = true       // flip de sprite
+            }
+            if (kb.isHeld(Keys.Right)) {
+                xspeed = 300
+                this.graphics.flipHorizontal = false      // flip de sprite
+            }
+            this.vel = new Vector(xspeed, yspeed)
+    
+            // als er maar 1x iets gebeurt check je of die key was ingedrukt in dit frame
+            if (kb.wasPressed(Keys.Space)) {
+                this.shoot()
+            }
         }
     }
 
@@ -72,12 +112,14 @@ export class Spongebob extends Actor {
     hitSomething(event) {
         if (event.other.owner instanceof Jellyfish) {
             // Je kan `instanceof` gebruiken om te zien waar je tegenaan botst.
-            console.log('Vang kwal')
+            console.log(`${this.name} ving een kwal`)
             event.other.owner.kill()
             //event.other.owner.wasEatenByShark
             //geluid
             //Resources.Laugh.play()
-            this.scene.engine.ui.addScore()
+            this.score++
+            console.log(`${this.score}`)
+            this.scene.engine.ui.showScore(this.score)
         }
     }
 
