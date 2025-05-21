@@ -5,6 +5,7 @@ import { UI } from './ui.js'
 import { Spongebob } from './spongebob.js'
 import { Mine } from './mine.js'
 import { Jellyfish } from './jellyfish.js'
+import { Bubble } from './bubble.js'
 
 // import van "excalibur"
 export class Game extends Engine {
@@ -75,12 +76,11 @@ export class Game extends Engine {
         let mine = new Mine 
         this.add(mine)
 
-        // bubbles maken
-        // for (let i = 0; i < 50; i++) {
-        //
-        //     let bubble = new Bubble()
-        //    this.add(bubble)
-        //}
+         for (let i = 0; i < 50; i++) {
+        
+             let bubble = new Bubble()
+            this.add(bubble)
+        }
 
 
 

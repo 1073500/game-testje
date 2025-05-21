@@ -1,4 +1,5 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
+import { Bubble } from './bubble'
 
 // voeg hier jouw eigen resources toe
 // img resources zijn objecten die een afbeelding bevatten
@@ -7,6 +8,7 @@ const Resources = {
     BG: new ImageSource('images/game-bg.png'),
     Spongebob: new ImageSource('images/main-sprite.png'),
     Mine: new ImageSource('images/mine-scaled.png'),
+    Bubble: new ImageSource('images/bubble.png'),
     // House: new ImageSource('images/pineapple.png'),
     //geluid
     Laugh: new Sound('sounds/spongebob-laugh.wav'),

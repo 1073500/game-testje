@@ -2,6 +2,7 @@
 import { Actor, Vector, Keys, CollisionType } from "excalibur"
 import { Resources } from './resources.js'
 import { Jellyfish } from "./jellyfish.js"
+import { Bubble } from "./bubble.js"
 
 // export, zodat spongebob in de game komt
 export class Spongebob extends Actor {
@@ -121,6 +122,11 @@ export class Spongebob extends Actor {
             console.log(`${this.score}`)
             this.scene.engine.ui.showScore(this.score)
         }
+    }
+
+    shoot(){
+        console.log("Spongebob schiet!")
+        this.scene.add(new Bubble())
     }
 
 
